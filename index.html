@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediaStudio Pro - Creative Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .markdown-preview h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1.5rem; color: #0f172a; }
+        .markdown-preview h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1.25rem; color: #1e293b; margin-top: 2rem; }
+        .markdown-preview h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #334155; margin-top: 1.5rem; }
+        .markdown-preview p { margin-bottom: 1.25rem; line-height: 1.7; color: #475569; }
+        .markdown-preview ul, .markdown-preview ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
+        .markdown-preview li { margin-bottom: 0.5rem; line-height: 1.6; }
+        .markdown-preview blockquote { border-left: 4px solid #e2e8f0; padding-left: 1rem; font-style: italic; color: #64748b; margin: 1.5rem 0; }
+        .markdown-preview table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+        .markdown-preview th { background-color: #f8fafc; font-weight: 700; text-align: left; padding: 0.75rem; border: 1px solid #e2e8f0; }
+        .markdown-preview td { padding: 0.75rem; border: 1px solid #e2e8f0; vertical-align: top; }
+
+        /* Estilos de Impressão Profissionais */
+        @media print {
+            @page {
+                margin: 2.0cm;
+                size: A4;
+            }
+
+            html, body {
+                background: white !important;
+                color: #111 !important;
+                font-size: 11pt !important;
+                line-height: 1.6 !important;
+                margin: 0;
+                padding: 0;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            /* Esconder elementos de UI e navegação */
+            nav, aside, header, button, .no-print, [role="button"], 
+            .fixed, .absolute, .sticky, 
+            input, textarea, .bg-slate-50, .dark\:bg-slate-900,
+            .custom-scrollbar, ::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            /* Forçar container de conteúdo a ocupar toda a largura sem barras de rolagem */
+            #root, main, .max-w-7xl, .h-full, .flex-1, .grid, .overflow-auto, .overflow-y-auto, .overflow-hidden {
+                display: block !important;
+                overflow: visible !important;
+                width: 100% !important;
+                height: auto !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                position: static !important;
+                transform: none !important;
+            }
+
+            /* Área de Conteúdo da Prévia Editorial */
+            .markdown-preview {
+                display: block !important;
+                width: 100% !important;
+                padding: 0 !important;
+                background: transparent !important;
+                position: relative !important;
+            }
+
+            /* Tipografia e espaçamento para impressão */
+            .markdown-preview h1 {
+                font-size: 26pt !important;
+                margin-top: 0;
+                margin-bottom: 24pt;
+                color: black !important;
+                border-bottom: 1.5pt solid #ddd;
+                padding-bottom: 12pt;
+                page-break-after: avoid;
+            }
+
+            .markdown-preview h2 {
+                font-size: 19pt !important;
+                margin-top: 28pt !important;
+                margin-bottom: 12pt;
+                color: #222 !important;
+                page-break-after: avoid;
+            }
+
+            .markdown-preview h3 {
+                font-size: 15pt !important;
+                margin-top: 20pt !important;
+                page-break-after: avoid;
+            }
+
+            .markdown-preview p, .markdown-preview li {
+                font-size: 11.5pt !important;
+                text-align: justify;
+                orphans: 3;
+                widows: 3;
+                margin-bottom: 12pt !important;
+            }
+
+            /* Tabelas profissionais para relatórios */
+            .markdown-preview table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                margin: 20pt 0 !important;
+                page-break-inside: auto;
+            }
+
+            .markdown-preview tr {
+                page-break-inside: avoid;
+                page-break-after: auto;
+            }
+
+            .markdown-preview th, .markdown-preview td {
+                border: 0.5pt solid #ccc !important;
+                padding: 8pt !important;
+                font-size: 10pt !important;
+            }
+
+            .markdown-preview th {
+                background-color: #f5f5f5 !important;
+                font-weight: bold !important;
+            }
+
+            /* Citações e códigos */
+            .markdown-preview blockquote {
+                border-left: 3pt solid #ddd !important;
+                padding-left: 15pt !important;
+                color: #444 !important;
+                font-style: italic !important;
+            }
+
+            .markdown-preview pre, .markdown-preview code {
+                font-family: 'JetBrains Mono', monospace !important;
+                font-size: 9pt !important;
+                background: #f8f8f8 !important;
+                padding: 4pt !important;
+                border-radius: 4pt;
+            }
+
+            /* Links e referências */
+            a {
+                text-decoration: underline;
+                color: #000 !important;
+            }
+
+            a::after {
+                content: " (" attr(href) ")";
+                font-size: 8.5pt;
+                font-weight: normal;
+                color: #555;
+            }
+
+            /* Rodapé de identificação do documento */
+            body::after {
+                content: "Documento oficial MediaStudio Pro • Data de Emissão: " counter(page);
+                display: block;
+                position: fixed;
+                bottom: -1cm;
+                left: 0;
+                right: 0;
+                text-align: center;
+                font-size: 8pt;
+                color: #888;
+                border-top: 0.5pt solid #eee;
+                padding-top: 10pt;
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "recharts": "https://esm.sh/recharts@^3.7.0",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.39.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-slate-50 text-slate-900 transition-colors duration-200">
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
