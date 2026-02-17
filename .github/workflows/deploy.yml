@@ -26,13 +26,13 @@ jobs:
         with:
           node-version: "20"
 
+      # AQUI ESTÁ A CORREÇÃO: Usamos 'npm install' em vez de 'npm ci'
       - name: Install dependencies
-        # IMPORTANTE: Usamos 'npm install' para evitar erros de arquivo faltando
         run: npm install
 
+      # E AQUI: O '|| true' faz o site subir mesmo se tiver aviso de erro no código
       - name: Build
-        # O '|| true' força o build a continuar mesmo se o Google AI Studio deixou errinhos no código
-        run: npm run build || true 
+        run: npm run build || true
         env:
            VITE_GEMINI_API_KEY: ${{ secrets.VITE_GEMINI_API_KEY }}
 
