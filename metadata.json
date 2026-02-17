@@ -1,0 +1,8 @@
+{
+  "name": "MediaStudio Pro - UPPER WRITING DEFINITIVE",
+  "description": "A comprehensive content creation suite for journalists, influencers, and editors, powered by Gemini 3.0 Flash.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
